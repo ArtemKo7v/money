@@ -1,0 +1,19 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/amilabs/devkit"
+        }
+    ],
+    "require": {
+        "amilabs/devkit": "dev-develop",
+        "smarty/smarty": "~3.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "MoneyApp": "app/classes"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable" : true
+}
