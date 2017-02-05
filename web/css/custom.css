@@ -1,0 +1,29 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 120px;
+}
+
+ul.nav li a {
+    cursor: pointer;
+}
+
+#auth-login {
+    margin-top: 8px;
+}
+
+footer {
+    background-color: #222;
+    color: white;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  height: 16px;
+  width: 100%;
+  font-size:11px;
+  padding-top: 2px;
+} 
+
+@media (min-width: 768px){
+}
