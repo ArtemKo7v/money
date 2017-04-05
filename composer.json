@@ -11,7 +11,9 @@
     },
     "autoload": {
         "psr-0": {
-            "MoneyApp": "app/classes"
+            "MoneyApp\\Database": "app/classes",
+            "MoneyApp\\Locales": "app/classes",
+            "MoneyApp\\Auth": "app/classes"
         }
     },
     "minimum-stability": "dev",

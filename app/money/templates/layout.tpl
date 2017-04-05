@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <base href="/">
-        <title>Money</title>
+        <title>My Bills</title>
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="robots" content="noindex, nofollow">
@@ -11,16 +11,17 @@
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/css/plugins.css">
         <link rel="stylesheet" href="/css/custom.css">
-    </head>
-    <body>
-        {include "_topmenu.tpl"}
-        <div class="container">
-            {$content}
-        </div>
-        {include "_footer.tpl"}
-        {debug}
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/plugins.js"></script>
+        <script src="/js/app.js"></script>
+    </head>
+    <body>
+        {include "_topmenu.tpl"}
+        <div class="background">
+            {$content}
+        </div>
+        {include "_footer.tpl"}
+        {*debug*}
     </body>
 </html>
