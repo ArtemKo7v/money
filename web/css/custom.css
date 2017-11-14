@@ -2,6 +2,10 @@
     outline: none !important;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
   padding-top: 50px;
   padding-bottom: 120px;
@@ -108,7 +112,28 @@ footer {
     border-bottom-width: 3px;
     border-radius: 8px;
     padding: 16px;
+    overflow: auto;
 }
+
+.dayDetails .row.categoryRow {
+    margin-top: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px dotted #aaa;
+}
+
+.dayDetails .itemDetails {
+    font-size: 11px;
+    color: #999;
+}
+
+.dayDetails .categoryTitle {
+    font-weight: bold;
+}
+
+.dayDetails .categoryTotal {
+    font-weight: bold;
+}
+
 
 .blackBorder {
     border: 1px solid black;

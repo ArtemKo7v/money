@@ -77,38 +77,78 @@ MyBills.MonthReport = {
         console.log(JSON.stringify(data, null, 4));
 
         var res = $('<div>');
+        res.addClass('dayDetails');
+
+        var content = $('<div>');
+        content.addClass('dialogWindowContent');
+
         var plan = $('<div>');
         var real = $('<div>');
 
         for(var category in data.data){
-            for(var i=0; i<data.data[category].items.length; i++){
-                var item = data.data[category].items[i];
+            var cat = data.data[category];
 
-                var row = $('<div>');
-                row.addClass('row');
+            var catRow = $('<div>');
+            catRow.addClass('row categoryRow');
 
-                var title = $('<div>');
-                title.addClass('col-xs-5');
-                title.text(item.title);
+            var catTitle = $('<div>');
+            catTitle.addClass('col-xs-6 categoryTitle');
+            catTitle.text(category);
 
-                var value = $('<div>');
-                value.addClass('col-xs-4 text-right');
-                value.text(item.value);
+            var catTotal = $('<div>');
+            catTotal.addClass('col-xs-4 text-right categoryTotal');
+            catTotal.text(cat.total);
+            catTotal.addClass((parseInt(cat.total) < 0) ? 'text-danger' : 'text-success');
 
-                value.addClass((parseInt(item.value) < 0) ? 'text-danger' : 'text-success');
+            catRow.append(catTitle);
+            catRow.append(catTotal);
+            real.append(catRow);
 
-                row.append(title);
-                row.append(value);
-                real.append(row);
+            if((cat.items.length > 1) || ((cat.items.length == 1) && ((cat.items[0].title != category) || cat.items[0].details))){
+                for(var i=0; i<cat.items.length; i++){
+                    var item = cat.items[i];
+
+                    var row = $('<div>');
+                    row.addClass('row');
+
+                    var title = $('<div>');
+                    title.addClass('col-xs-offset-1 col-xs-5');
+                    title.text(item.title);
+
+                    if(item.details){
+                        var details = $('<div>');
+                        details.addClass('itemDetails');
+                        details.text(item.details);
+                        title.append(details);
+                    }
+
+                    var value = $('<div>');
+                    value.addClass('col-xs-4 text-right');
+                    value.text(item.value);
+                    value.addClass((parseInt(item.value) < 0) ? 'text-danger' : 'text-success');
+
+                    var icons = $('<div>');
+                    icons.addClass('col-xs-2 text-right');
+                    icons.append('<i class="fa fa-pencil">');
+                    icons.append('<i class="fa fa-times">');
+
+                    row.append(title);
+                    row.append(value);
+                    row.append(icons);
+
+                    real.append(row);
+                }
             }
         }
         
-        res.append(plan);
-        res.append(real);
+        content.append(plan);
+        content.append(real);
 
-        console.log(res.html());
+        res.append(content);
 
-        new MyBills.dialog(res.html());
+        console.log(res);
+
+        new MyBills.dialog(res);
     }
 };
 
@@ -133,6 +173,13 @@ MyBills.dialog = function(el, options){
             $('body').append(bg);
         }
         win.show();
+        if(win.find('.dialogWindowContent').length){
+            var contentHeight = win.find('.dialogWindowContent').height();
+            var windowHeight = win.height();
+            if((windowHeight - contentHeight) > 50){
+                win.css('max-height', (contentHeight + 50) + 'px');
+            }
+        }
     };
 
     this.close = function(){

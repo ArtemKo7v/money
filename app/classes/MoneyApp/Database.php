@@ -184,8 +184,11 @@ class Database {
             if(is_null($row['title'])){
                 $row['title'] = $cat;
             }
-            $aResult['dates'][$date][$part][$cat]['items'][] = array('title' => $row['title'], 'value' => $row['value']);
-            // $aResult['dates'][$date][$part][$cat]['itemsJSON'] = json_encode($aResult['dates'][$date][$part][$cat]['items']);
+            $item = array('title' => $row['title'], 'value' => $row['value']);
+            if($row['details']){
+                $item['details'] = $row['details'];
+            }
+            $aResult['dates'][$date][$part][$cat]['items'][] = $item;
             $aResult['dates'][$date][$part][$cat]['total'] += $row['value'];
             $aResult['dates'][$row['tx_date']][$part . '-change'] += $row['value'];
             $len = count($aResult['dates'][$row['tx_date']][$part]);
